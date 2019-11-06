@@ -19,6 +19,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -36,15 +39,15 @@ public class AnagramDictionary {
 
 
     public AnagramDictionary(Reader reader) throws IOException {
+
         BufferedReader in = new BufferedReader(reader);
         String line;
-         wordList = new ArrayList<>();
+        wordList = new ArrayList<>();
         wordSet = new HashSet<>();
         letters2words = new HashMap<>();
         size2Words = new HashMap<>();
-        while((line = in.readLine()) != null) {
-            String word = line.trim();
-             while ((line = in.readLine()) != null) {
+
+        while ((line = in.readLine()) != null) {
             String word = line.trim();
             wordList.add(word);
             wordSet.add(word);
@@ -65,12 +68,12 @@ public class AnagramDictionary {
                 ArrayList<String> t = new ArrayList<>();
                 t.add(word);
                 size2Words.put(l, t);
-            } 
+            }
         }
     }
 
     public boolean isGoodWord(String word, String base) {
-         return wordSet.contains(word) && !word.contains(base);
+        return wordSet.contains(word) && !word.contains(base);
     }
 
     public List<String> getAnagrams(String targetWord) {
@@ -81,15 +84,29 @@ public class AnagramDictionary {
                 result.add(i);
         return result;
     }
-    
-     public String sortLetters(String word) {
+
+    public String sortLetters(String word) {
         char[] sortedWord = word.toCharArray();
         Arrays.sort(sortedWord);
         return new String(sortedWord);
-     }
+    }
 
     public List<String> getAnagramsWithOneMoreLetter(String word) {
         ArrayList<String> result = new ArrayList<String>();
+        String plusOne = word;
+
+        for (String i : wordList){
+
+            if ( i.length() == 1) {
+                plusOne += i;
+                plusOne = sortLetters(plusOne);
+            }
+
+
+            if (plusOne.equals(i)) {
+                result.add(i);
+            }
+        }
         return result;
     }
 
