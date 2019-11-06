@@ -103,7 +103,7 @@ public class AnagramDictionary {
             }
 
 
-            if (plusOne.equals(i)) {
+            if (plusOne.equals(sortLetters(i))) {
                 result.add(i);
             }
         }
