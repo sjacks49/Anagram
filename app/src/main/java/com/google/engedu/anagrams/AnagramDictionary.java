@@ -111,6 +111,15 @@ public class AnagramDictionary {
     }
 
     public String pickGoodStarterWord() {
-        return "stop";
+        ArrayList<String> txt = size2word.get(wordLen);
+        
+        if (wordLen > MAX_WORD_LENGTH) wordLen++;
+        
+        while (true) {
+            String word = txt.get(random.nextInt(txt.size()));
+            
+            if getAnagramsWithOneMoreLetter(word).size >= MIN_NUM_ANAGRAMS
+        return word;
+        }
     }
 }
