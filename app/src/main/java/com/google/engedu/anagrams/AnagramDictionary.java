@@ -91,7 +91,7 @@ public class AnagramDictionary {
         return new String(sortedWord);
     }
 
-    public List<String> getAnagramsWithOneMoreLetter(String word) {
+    /*public List<String> getAnagramsWithOneMoreLetter(String word) {
         ArrayList<String> result = new ArrayList<String>();
         String plusOne = word;
 
@@ -105,6 +105,19 @@ public class AnagramDictionary {
 
             if (plusOne.equals(sortLetters(i))) {
                 result.add(i);
+            }
+        }
+        return result;
+    }
+    */
+    
+      ArrayList<String> result = new ArrayList<String>();
+        String k;
+        for (char i = 'a'; i <= 'z'; i++) {
+            k = sortLetters(word.concat("" + i));
+
+            if(lettersToWord.containsKey(k)) {
+                result.addAll(lettersToWord.get(k));
             }
         }
         return result;
