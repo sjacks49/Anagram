@@ -91,7 +91,8 @@ public class AnagramDictionary {
         return new String(sortedWord);
     }
 
-    /*public List<String> getAnagramsWithOneMoreLetter(String word) {
+    public List<String> getAnagramsWithOneMoreLetter(String word) {
+        /*
         ArrayList<String> result = new ArrayList<String>();
         String plusOne = word;
 
@@ -102,37 +103,35 @@ public class AnagramDictionary {
                 plusOne = sortLetters(plusOne);
             }
 
-
             if (plusOne.equals(sortLetters(i))) {
                 result.add(i);
             }
         }
         return result;
-    }
-    */
-    
-      ArrayList<String> result = new ArrayList<String>();
+        */
+
+        ArrayList<String> result = new ArrayList<>();
         String k;
         for (char i = 'a'; i <= 'z'; i++) {
             k = sortLetters(word.concat("" + i));
 
-            if(lettersToWord.containsKey(k)) {
-                result.addAll(lettersToWord.get(k));
+            if (letters2words.containsKey(k)) {
+                result.addAll(letters2words.get(k));
             }
         }
         return result;
     }
 
+
     public String pickGoodStarterWord() {
-        ArrayList<String> txt = size2word.get(wordLen);
-        
-        if (wordLen > MAX_WORD_LENGTH) wordLen++;
-        
+        ArrayList<String> txt = size2Words.get(wordLength);
+
+        if (wordLength > MAX_WORD_LENGTH) wordLength++;
+
         while (true) {
             String word = txt.get(random.nextInt(txt.size()));
-            
-            if getAnagramsWithOneMoreLetter(word).size >= MIN_NUM_ANAGRAMS
-        return word;
+            if (getAnagramsWithOneMoreLetter(word).size() >= MIN_NUM_ANAGRAMS)
+                return word;
         }
     }
 }
