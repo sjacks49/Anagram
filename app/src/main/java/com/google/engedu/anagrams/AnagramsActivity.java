@@ -158,9 +158,11 @@ public class AnagramsActivity extends AppCompatActivity {
             gameStatus.append(" Hit 'Play' to start again");
         }
         return true;
+
     }
 
-    public void Change_Mode(View view){
+    public void Change_Mode(View view) {
         hard_mode = !hard_mode;
     }
+}
 
