@@ -43,9 +43,12 @@ import java.util.List;
 public class AnagramsActivity extends AppCompatActivity {
 
     public static final String START_MESSAGE = "Find as many words as possible that can be formed by adding one letter to <big>%s</big> (but that do not contain the substring %s).";
+    public static final String START_MESSAGE_2 = "Find as many words as possible that can be formed by adding two letters to <big>%s</big> (but that do not contain the substring %s).";
     private AnagramDictionary dictionary;
     private String currentWord;
     private List<String> anagrams;
+    private boolean hard_mode = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,8 +132,15 @@ public class AnagramsActivity extends AppCompatActivity {
         TextView resultView = (TextView) findViewById(R.id.resultView);
         if (currentWord == null) {
             currentWord = dictionary.pickGoodStarterWord();
+
             anagrams = dictionary.getAnagramsWithOneMoreLetter(currentWord);
             gameStatus.setText(Html.fromHtml(String.format(START_MESSAGE, currentWord.toUpperCase(), currentWord)));
+
+            if (hard_mode) {
+                anagrams = dictionary.getAnagramsWithTwoLetters(currentWord);
+                gameStatus.setText(Html.fromHtml(String.format(START_MESSAGE_2, currentWord.toUpperCase(), currentWord)));
+            }
+
             fab.setImageResource(android.R.drawable.ic_menu_help);
             fab.hide();
             resultView.setText("");
@@ -149,4 +159,8 @@ public class AnagramsActivity extends AppCompatActivity {
         }
         return true;
     }
-}
+
+    public void Change_Mode(View view){
+        hard_mode = !hard_mode;
+    }
+
