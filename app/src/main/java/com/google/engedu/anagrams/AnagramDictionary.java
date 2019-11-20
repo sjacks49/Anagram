@@ -134,4 +134,20 @@ public class AnagramDictionary {
                 return word;
         }
     }
+
+    public List<String> getAnagramsWithTwoLetters(String word) {
+        List<String> res = new ArrayList<>();
+        String add;
+
+        for (char i = 'a'; i <= 'z'; i++) {
+            for (char j = 'a'; j < 'z'; j++) {
+                add = sortLetters(word.concat("" + i + j));
+
+                if (letters2words.containsKey(add)) {
+                    res.addAll(letters2words.get(add));
+                }
+            }
+        }
+        return res;
+    }
 }
