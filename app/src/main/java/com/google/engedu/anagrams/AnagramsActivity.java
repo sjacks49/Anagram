@@ -24,6 +24,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +49,8 @@ public class AnagramsActivity extends AppCompatActivity {
     private String currentWord;
     private List<String> anagrams;
     private boolean hard_mode = false;
+
+    public final String APP_TAG = "anagram";
 
 
     @Override
@@ -132,13 +135,15 @@ public class AnagramsActivity extends AppCompatActivity {
         TextView resultView = (TextView) findViewById(R.id.resultView);
         if (currentWord == null) {
             currentWord = dictionary.pickGoodStarterWord();
-
+            Log.w(APP_TAG, "Starter Word: " + currentWord);
             anagrams = dictionary.getAnagramsWithOneMoreLetter(currentWord);
+            Log.w(APP_TAG, "Anagram List Generated");
             gameStatus.setText(Html.fromHtml(String.format(START_MESSAGE, currentWord.toUpperCase(), currentWord)));
 
             if (hard_mode) {
                 anagrams = dictionary.getAnagramsWithTwoLetters(currentWord);
                 gameStatus.setText(Html.fromHtml(String.format(START_MESSAGE_2, currentWord.toUpperCase(), currentWord)));
+                Log.w(APP_TAG,"Hard mode Activated");
             }
 
             fab.setImageResource(android.R.drawable.ic_menu_help);

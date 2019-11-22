@@ -15,6 +15,9 @@
 
 package com.google.engedu.anagrams;
 
+import android.appwidget.AppWidgetProvider;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
