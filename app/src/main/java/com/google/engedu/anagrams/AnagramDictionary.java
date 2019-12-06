@@ -133,12 +133,19 @@ public class AnagramDictionary {
     public String pickGoodStarterWord() {
         ArrayList<String> txt = size2Words.get(wordLength);
 
-        if (wordLength > MAX_WORD_LENGTH) wordLength++;
+        if (wordLength < MAX_WORD_LENGTH){
+            wordLength++;
+        }
 
         while (true) {
             String word = txt.get(random.nextInt(txt.size()));
-            if (getAnagramsWithOneMoreLetter(word).size() >= MIN_NUM_ANAGRAMS)
+            if (getAnagramsWithOneMoreLetter(word).size() >= MIN_NUM_ANAGRAMS){
+                Log.w("anagram", "" + wordLength);
                 return word;
+            }
+            if (getAnagramsWithTwoLetters(word).size() >= MIN_NUM_ANAGRAMS){
+                return word;
+            }
         }
     }
 
