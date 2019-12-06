@@ -119,7 +119,11 @@ public class AnagramDictionary {
             k = sortLetters(word.concat("" + i));
 
             if (letters2words.containsKey(k)) {
-                result.addAll(letters2words.get(k));
+                for (String s : letters2words.get(k)) {
+                    if (isGoodWord(s, word)){
+                        result.add(s);
+                    }
+                }
             }
         }
         return result;
@@ -143,11 +147,15 @@ public class AnagramDictionary {
         String add;
 
         for (char i = 'a'; i <= 'z'; i++) {
-            for (char j = 'a'; j < 'z'; j++) {
+            for (char j = i; j < 'z'; j++) {
                 add = sortLetters(word.concat("" + i + j));
 
                 if (letters2words.containsKey(add)) {
-                    res.addAll(letters2words.get(add));
+                    for (String s : letters2words.get(add)) {
+                        if (isGoodWord(s, word)){
+                            res.add(s);
+                        }
+                    }
                 }
             }
         }

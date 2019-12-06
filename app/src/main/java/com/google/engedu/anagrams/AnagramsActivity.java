@@ -137,7 +137,7 @@ public class AnagramsActivity extends AppCompatActivity {
             currentWord = dictionary.pickGoodStarterWord();
             Log.w(APP_TAG, "Starter Word: " + currentWord);
             anagrams = dictionary.getAnagramsWithOneMoreLetter(currentWord);
-            Log.w(APP_TAG, "Anagram List Generated");
+            Log.w(APP_TAG, "Anagrams: " + anagrams);
             gameStatus.setText(Html.fromHtml(String.format(START_MESSAGE, currentWord.toUpperCase(), currentWord)));
 
             if (hard_mode) {
